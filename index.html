@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101317">
+  <title>Meu treino</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div id="perfis" class="perfis" aria-label="De quem é o treino"></div>
+    <div class="linha-topo">
+      <h1 id="titulo">Meu treino</h1>
+      <span id="data-hoje"></span>
+    </div>
+    <nav id="abas" class="abas" aria-label="Dias da semana"></nav>
+  </header>
+
+  <main id="treino"></main>
+
+  <footer class="rodape">
+    <span id="status" class="status" role="status"></span>
+    <div class="acoes">
+      <button type="button" id="btn-backup" class="botao">Backup</button>
+      <label for="arquivo" class="botao">Restaurar</label>
+      <input type="file" id="arquivo" accept=".json,application/json" hidden>
+    </div>
+  </footer>
+
+  <script src="treino.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

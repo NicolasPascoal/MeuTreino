@@ -1,0 +1,216 @@
+:root {
+  --bg: #101317;
+  --card: #1a1f26;
+  --campo: #232a33;
+  --borda: #2e3742;
+  --texto: #e8ecf1;
+  --sec: #9aa6b2;
+  --fraco: #6b7682;
+  --acento: #4f9dff;
+  --verde: #3ecf8e;
+  --amarelo: #f5c451;
+  --laranja: #ff9f43;
+  --vermelho: #ff6b6b;
+  --raio: 10px;
+}
+
+/* Tema feminino (perfil com tema: "rosa" no treino.js) */
+body[data-tema="rosa"] {
+  --bg: #1c1220;
+  --card: #2a1b2f;
+  --campo: #36243c;
+  --borda: #4a3352;
+  --texto: #fbeef6;
+  --sec: #c9a9c0;
+  --fraco: #94788d;
+  --acento: #ff6fae;
+  --verde: #7be0b4;
+  --amarelo: #ffd27a;
+  --laranja: #ffa98a;
+  --vermelho: #ff7b93;
+  --raio: 16px;
+}
+body[data-tema="rosa"] .cartao { border-radius: 20px; }
+body[data-tema="rosa"] input,
+body[data-tema="rosa"] select,
+body[data-tema="rosa"] .botao { border-radius: 12px; }
+body[data-tema="rosa"] .aba { border-radius: 12px; }
+body[data-tema="rosa"] h1::before { content: "♡ "; color: var(--acento); }
+body[data-tema="rosa"] .titulo-dia { color: var(--acento); }
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 12px 24px;
+}
+
+/* ---------- Topo e abas ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg);
+  padding: 12px 0 10px;
+}
+/* seletor de pessoa */
+.perfis {
+  display: flex;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 3px;
+  margin-bottom: 12px;
+}
+.perfil {
+  flex: 1;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  color: var(--sec);
+  font: inherit;
+  font-size: 14px;
+  padding: 7px 0;
+  cursor: pointer;
+}
+.perfil.ativo { background: var(--acento); color: #fff; font-weight: 600; }
+
+.linha-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+h1 { font-size: 20px; margin: 0; }
+#data-hoje { font-size: 13px; color: var(--fraco); }
+
+.abas {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 3px;
+}
+.aba {
+  position: relative;
+  background: none;
+  border: 0;
+  border-radius: 7px;
+  color: var(--sec);
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.aba.ativa { background: var(--acento); color: #fff; font-weight: 600; }
+/* pontinho embaixo do dia de hoje */
+.aba.hoje::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Treino do dia ---------- */
+.titulo-dia { font-size: 17px; margin: 14px 0 10px; }
+
+.descanso { text-align: center; padding: 40px 0; color: var(--sec); }
+
+.cartao {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.cab { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.cab h3 { font-size: 16px; margin: 0; }
+.meta { font-size: 13px; color: var(--sec); white-space: nowrap; }
+.obs { font-size: 13px; color: var(--sec); margin: 2px 0 0; }
+.ultima-data { font-size: 12px; color: var(--fraco); margin: 2px 0 10px; }
+
+.grade { display: grid; gap: 6px; align-items: center; }
+.grade.forca { grid-template-columns: 26px 1fr 1fr 1.3fr; }
+.grade.cardio { grid-template-columns: 1fr 1fr 1fr 1.3fr; }
+.rotulo { font-size: 11px; color: var(--fraco); }
+.serie { font-size: 14px; font-weight: 600; }
+
+input, select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  background: var(--campo);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
+  font: inherit;
+  font-size: 16px; /* 16px evita o zoom automático no iPhone */
+  padding: 0 8px;
+}
+select { padding: 0 4px; }
+input::placeholder { color: var(--fraco); }
+input:focus, select:focus { outline: 2px solid var(--acento); outline-offset: -1px; }
+
+select[data-dif="Fácil"] { color: var(--verde); }
+select[data-dif="Médio"] { color: var(--amarelo); }
+select[data-dif="Difícil"] { color: var(--laranja); }
+select[data-dif="Falha"] { color: var(--vermelho); }
+
+/* linha "último: ..." embaixo de cada série */
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 18px;
+  margin: 3px 0 10px 32px;
+  font-size: 12px;
+  color: var(--fraco);
+}
+.cartao.cardio .info { margin-left: 0; }
+.info:last-child { margin-bottom: 0; }
+
+.badge { font-size: 12px; padding: 1px 8px; border-radius: 6px; white-space: nowrap; }
+.badge:empty { display: none; }
+.badge.up { background: rgba(62, 207, 142, .15); color: var(--verde); }
+.badge.down { background: rgba(255, 107, 107, .15); color: var(--vermelho); }
+.badge.mix { background: rgba(245, 196, 81, .15); color: var(--amarelo); }
+.badge.eq { background: var(--campo); color: var(--sec); }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.status { font-size: 13px; color: var(--verde); }
+.status.erro { color: var(--vermelho); }
+.acoes { display: flex; gap: 6px; }
+.botao {
+  background: var(--campo);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 12px;
+  cursor: pointer;
+}

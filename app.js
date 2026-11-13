@@ -150,8 +150,13 @@ function avisar(msg, erro = false) {
   timerAviso = setTimeout(() => (s.textContent = ""), erro ? 5000 : 1500);
 }
 
+// Se o mesmo treino é usado em mais de um dia (ex.: seg e sex), todos esses
+// dias usam o histórico do primeiro deles.
 function chave(item) {
-  return diaAtual + "|" + item.nome;
+  const treinos = PERFIS[perfilAtual].treino;
+  const atual = treinos[diaAtual];
+  const diaHistorico = DIAS.find((d) => treinos[d.id] === atual).id;
+  return diaHistorico + "|" + item.nome;
 }
 
 function ultimoAntesDeHoje(k) {
